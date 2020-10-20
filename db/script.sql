@@ -1,10 +1,9 @@
 CREATE TABLE Clientes(
-   id INT NOT NULL,
-   CUIT INT NOT NULL UNIQUE,
+   cuit INT NOT NULL UNIQUE,
    apellido VARCHAR(32),
    nombre VARCHAR(32),
    region VARCHAR(32),
-   PRIMARY KEY (id)
+   PRIMARY KEY (cuit)
 );
 
 CREATE TABLE Productos(
@@ -16,14 +15,14 @@ CREATE TABLE Productos(
 CREATE TABLE Facturas(
   id INT NOT NULL,
   nroFactura INT NOT NULL UNIQUE,
-  clienteId INT,
+  clienteCUIT INT,
   fechaEmision DATE,
   fechaVencimiento DATE,
   condPago VARCHAR(32),
   total DECIMAL (12,2),
   PRIMARY KEY (id),
-  FOREIGN KEY (clienteId)
-  	REFERENCES Clientes(id)
+  FOREIGN KEY (clienteCUIT)
+  	REFERENCES Clientes(cuit)
   	ON DELETE SET NULL
  );
 
